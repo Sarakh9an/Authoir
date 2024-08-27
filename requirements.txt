@@ -1,0 +1,4 @@
+eventregistry
+future
+python-docx
+streamlit
