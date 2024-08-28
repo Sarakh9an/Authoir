@@ -8,7 +8,7 @@ from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 # Initialization block
-keywords_list = ["camera]
+keywords_list = ["camera"
 journal_list = ["theguardian.com"]
 language_list = ["eng", "hin"]
 topics = ["Geo Politics", "Military", "Development", "Health", "Business"]
