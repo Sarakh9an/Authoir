@@ -14,9 +14,9 @@ language_list = ["eng", "hin"]
 topics = ["Geo Politics", "Military", "Development", "Health", "Business"]
 ignore_topic_list = ['hockey', 'cricket', "Bollywood", "Hollywood", "Box office", "Asia Cup", "Games", "sport", "Fashion"]
 author_names = [
-    "Mallika Sen", "Ronojoy Mazumdar", "Chiranjivi Chakraborty", "Sibi Arasu", "Jere Longman and Suhasini Raj", "Siddhartha Singh", 
+   "John Reed", "Mallika Sen", "Ronojoy Mazumdar", "Chiranjivi Chakraborty", "Sibi Arasu", "Jere Longman", "Suhasini Raj", "Siddhartha Singh", 
     "Chris Kay", "Sankalp Phartiyal", "Shruti Srivastava", "Ashutosh Joshi", "Ng Wei Kai", "Anup Sinha", "Sudhi Ranjan Sen", 
-    "Ruchi Bhatia", "Peter Martin", "Iain Marlow", "Martin Wolf", "Alex Gabriel Simon", "Amrit Dhillon", "Mihir Sharma"
+    "Ruchi Bhatia", "Peter Martin", "Iain Marlow", "Martin Wolf", "Alex Gabriel Simon", "Amrit Dhillon", "Mihir Sharma", "Anumita Kaur"
 ]
 max_items_per_journal = 5  # Maximum 5 articles per newspaper
 max_total_articles = 10  # Maximum total articles to retrieve
