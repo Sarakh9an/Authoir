@@ -9,12 +9,12 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 # Initialization block
 keywords_list = ["Human Rights", "Illegal occupied", "Anti-India", "Hindu", "Supremacy", "Nationalist", "India", "USA", "China", "Bangladesh", "UK", "Lanka", "Afghanistan", "Militant", "Khalistan", "terror"]
-journal_list = ["ft.com"]
+journal_list = ["bbc.com]
 language_list = ["eng", "hin"]
 topics = ["Geo Politics", "Military", "Development", "Health", "Business"]
 ignore_topic_list = ['hockey', 'cricket', "Bollywood", "Hollywood", "Box office", "Asia Cup", "Games", "sport", "Fashion"]
 author_names = [
-   "John Reed", "Mallika Sen", "Ronojoy Mazumdar", "Chiranjivi Chakraborty", "Sibi Arasu", "Jere Longman", "Suhasini Raj", "Siddhartha Singh", 
+   "Kirti Dubey", "John Reed", "Mallika Sen", "Ronojoy Mazumdar", "Chiranjivi Chakraborty", "Sibi Arasu", "Jere Longman", "Suhasini Raj", "Siddhartha Singh", 
     "Chris Kay", "Sankalp Phartiyal", "Shruti Srivastava", "Ashutosh Joshi", "Ng Wei Kai", "Anup Sinha", "Sudhi Ranjan Sen", 
     "Ruchi Bhatia", "Peter Martin", "Iain Marlow", "Martin Wolf", "Alex Gabriel Simon", "Amrit Dhillon", "Mihir Sharma", "Anumita Kaur"
 ]
