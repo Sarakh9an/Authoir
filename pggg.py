@@ -8,12 +8,12 @@ from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 # Initialization block
-keywords_list = ["Zelensky", "Hungary","Lizzie Johnson", "Serhiy Morgunov", "Raf Casert"]
+keywords_list = ["Zelensky", "Hungary"]
 journal_list = ["washingtonpost.com"]
 language_list = ["eng", "hin"]
 topics = ["Geo Politics", "Military", "Development", "Health", "Business"]
 ignore_topic_list = ['hockey', 'cricket', "Bollywood", "Hollywood", "Box office", "Asia Cup", "Games", "sport", "Fashion"]
-#author_names = ["Lizzie Johnson", "Serhiy Morgunov", "Raf Casert"]
+author_names = ["Lizzie Johnson", "Serhiy Morgunov", "Raf Casert"]
 max_items_per_journal = 5  # Maximum 5 articles per newspaper
 max_total_articles = 10  # Maximum total articles to retrieve
 days_range = 1
@@ -22,6 +22,15 @@ date_start = (datetime.now() - timedelta(days=days_range)).strftime('%Y-%m-%d')
 
 # Initialize a set to store unique article URLs
 unique_article_urls = set()
+
+def get_author_uris(er, author_names):
+    """Retrieve author URIs based on author names from EventRegistry."""
+    author_uris = []
+    for name in author_names:
+        uri = er.getAuthorUri(name)
+        if uri:
+            author_uris.append(uri)
+    return author_uris
 
 # Function to determine if an article should be ignored
 def should_ignore_article(article):
@@ -35,7 +44,7 @@ def should_ignore_article(article):
     return False
 
 # Function to retrieve articles for a given keyword and journal
-def retrieve_articles(keyword, journal):
+def retrieve_articles(keyword, journal, author_uris):
     try:
         er = EventRegistry(apiKey=st.secrets["secret_key"], allowUseOfArchive=False)
         q = QueryArticlesIter(
@@ -43,7 +52,7 @@ def retrieve_articles(keyword, journal):
             sourceUri=er.getSourceUri(journal),
             lang=QueryItems.OR(language_list),
             ignoreKeywords=QueryItems.OR(ignore_topic_list),
-            authorUri=QueryItems.OR(author_names),  # Add author names filter here
+            authorUri=QueryItems.OR(author_uris),  # Use URIs for author filtering
             isDuplicateFilter="skipDuplicates",
             dataType="news",
             dateStart=date_start,
@@ -66,13 +75,17 @@ def retrieve_articles(keyword, journal):
         print(f"An error occurred for '{keyword}' in '{journal}': {e}")
         return []
 
-def process_keyword_journal_combination(args):
+def process_keyword_journal_combination(args, author_uris):
     keyword, journal = args
-    articles = retrieve_articles(keyword, journal)
+    articles = retrieve_articles(keyword, journal, author_uris)
     return articles
 
 def main():
     st.title("Digital Press Clipping Generator")
+
+    # Initialize EventRegistry and get author URIs
+    er = EventRegistry(apiKey=st.secrets["secret_key"], allowUseOfArchive=False)
+    author_uris = get_author_uris(er, author_names)
 
     # Initialize all_articles as an empty list
     all_articles = []
@@ -80,7 +93,7 @@ def main():
 
     # Add a button to trigger document generation
     if st.button("Generate Digital Press Clipping"):
-        doc, all_articles = generate_document()
+        doc, all_articles = generate_document(author_uris)
         st.success("Document generated successfully!")
 
     # Display the document content
@@ -108,7 +121,7 @@ def main():
             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         )
 
-def generate_document():
+def generate_document(author_uris):
     # Fetch and add articles to the document
     doc = Document()  # Initialize the document
     all_articles = []
@@ -136,7 +149,7 @@ def generate_document():
     # Continue with adding articles
     for keyword in keywords_list:
         for journal in journal_list:
-            articles = retrieve_articles(keyword, journal)
+            articles = retrieve_articles(keyword, journal, author_uris)
             for article in articles:
                 art = json.loads(article)
                 article_url = art.get("url")
