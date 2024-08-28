@@ -8,12 +8,12 @@ from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 # Initialization block
-keywords_list = ["Zelensky", "Hungary"]
+keywords_list = ["Zelensky", "Hungary","Lizzie Johnson", "Serhiy Morgunov", "Raf Casert"]
 journal_list = ["washingtonpost.com"]
 language_list = ["eng", "hin"]
 topics = ["Geo Politics", "Military", "Development", "Health", "Business"]
 ignore_topic_list = ['hockey', 'cricket', "Bollywood", "Hollywood", "Box office", "Asia Cup", "Games", "sport", "Fashion"]
-author_names = ["Lizzie Johnson", "Serhiy Morgunov", "Raf Casert"]
+#author_names = ["Lizzie Johnson", "Serhiy Morgunov", "Raf Casert"]
 max_items_per_journal = 5  # Maximum 5 articles per newspaper
 max_total_articles = 10  # Maximum total articles to retrieve
 days_range = 1
